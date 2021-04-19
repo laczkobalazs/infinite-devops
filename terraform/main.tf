@@ -11,3 +11,11 @@ resource "aws_ecr_repository" "ecr_repo" {
     scan_on_push = true
   }
 }
+
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket = "infinite-bucket-for-hosting"
+  acl    = "public-read"
+  versioning {
+    enabled = true
+  }
+}
