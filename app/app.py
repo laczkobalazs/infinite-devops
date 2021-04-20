@@ -20,10 +20,11 @@ DBNAME = client.get_parameter(Name='DB_DBNAME', WithDecryption=True)[
 
 try:
     conn = psycopg2.connect(host=ENDPOINT, port=PORT,
-                            database=DBNAME, user=USR, password=token)
+                            database=DBNAME, user=USER, password=PASSWORD)
     cur = conn.cursor()
-    cur.execute("""SELECT now()""")
+    cur.execute("""SELECT version()""")
     query_results = cur.fetchall()
-    print(query_results)
+    print(
+        f"You are successfully connected to {query_results[0][0]} with user {query_results[0][1]}. The RDS version is {query_results[0][2]}")
 except Exception as e:
-    print("Database connection failed due to {}".format(e))
+    print(f"Database connection failed due to {e}")
