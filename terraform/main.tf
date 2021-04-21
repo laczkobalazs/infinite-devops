@@ -18,7 +18,6 @@ resource "aws_s3_bucket" "s3_bucket" {
   versioning {
     enabled = true
   }
-
   website {
     index_document = "index.html"
   }
