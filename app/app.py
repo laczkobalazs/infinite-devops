@@ -22,9 +22,9 @@ try:
     conn = psycopg2.connect(host=ENDPOINT, port=PORT,
                             database=DBNAME, user=USER, password=PASSWORD)
     cur = conn.cursor()
-    cur.execute("""SELECT version()""")
+    cur.execute("""SELECT version(), current_database(), current_user()""")
     query_results = cur.fetchall()
     print(
-        f"You are successfully connected to {query_results[0][0]} with user {query_results[0][1]}. The RDS version is {query_results[0][2]}")
+        f"You are successfully connected to {query_results[0][1]} with user {query_results[0][2]}. The RDS version is {query_results[0][0]}")
 except Exception as e:
     print(f"Database connection failed due to {e}")
